@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+</head>
+
+<body>
+	<!-- Navigation -->
+	<div class="container">
+		<!-- Menu -->
+
+		<hr>
+
+		<ul class="nav">
+			<li role="presentation"><button class="btn btn-success pull-left" id="cadastrar" data-toggle="modal" onclick="modalCadastrar()"><span class="glyphicon glyphicon-plus"></span>&nbsp;Cadastrar</button></li>
+			<li role="presentation"><button class="btn btn-link pull-right" id="cadastrar" data-toggle="modal" onclick="sair()"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Sair</button></li>
+		</ul>
+
+		<hr>
+
+		<div class="alert alert-success alert-dismissable" role="alert" id="msgs-sistema" style="display:none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<div class="alert-msg"></div>
+		</div>
+
+		<!-- Listagem de cards -->
+		<div class="row col-md-12" id="lista-cards"></div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="modal-sistema" tabindex="-1" role="dialog" aria-labelledby="modal-sistema-label" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h3 class="modal-title" id="modal-sistema-label">Cadastro de Card</h3>
+					</div>
+
+					<div class="modal-body">
+
+						<div id="cadastro-msgs" class="alert alert-danger" role="alert" style="display:none;"></div>
+
+						<form id="form-cadastro-card">
+							<div class="form-group">
+								<label for="titulo">Título</label>
+								<input type="text" class="form-control" id="titulo" aria-describedby="Título" placeholder="Tútulo" maxlength="255">
+							</div>
+							<div class="form-group">
+								<label for="descricao">Descrição</label>
+								<textarea class="form-control" id="descricao" placeholder="Descrição" maxlength="100"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="imagem">Imagem</label>
+								<input type="file" class="form-control" id="imagem" placeholder="Imagem">
+								<progress value="0" max="100" id="progresso_upload_foto">
+								</div>
+						</form>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" id="bt-cancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+						<button type="button" id="bt-ok" class="btn btn-primary" onclick="salvar()">Salvar</button>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+	<script type="text/javascript" src="./js/firebase.conf.js"></script>
+	<script src="js/app.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/login.js" defer="defer"></script>
+
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(document).ajaxStart(function() {
+				$('#modal-loading').modal('show');
+			});
+			$(document).ajaxStop(function() {
+				$('#modal-loading').modal('hide');
+			});
+		});
+	</script>
+
+	</html>
